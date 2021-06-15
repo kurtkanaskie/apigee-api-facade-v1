@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "a0893cad-7d32-4cfb-bf4a-6700ac7f41aa",
+		"name": "ApigeeX - KVMS via apigee-api facade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get KVMs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create KVM test-and-delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"201 Created\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-and-delete\",\n    \"encrypted\": true,\n    \"entry\": [\n        {\n            \"name\": \"name1\",\n            \"value\": \"CreateValue1\"\n        },\n        {\n            \"name\": \"name2\",\n            \"value\": \"CreateValue2\"\n        },\n        {\n            \"name\": \"name3\",\n            \"value\": \"CreateValue3\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (CreateValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"CreateValue1 == \" + json.value] = json.value === \"CreateValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create KVM test-and-delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"entries === 3\"] = json.entry.length === 3;",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test-and-delete\",\n    \"encrypted\": true,\n    \"entry\": [\n        {\n            \"name\": \"name1\",\n            \"value\": \"PutValue1\"\n        },\n        {\n            \"name\": \"name2\",\n            \"value\": \"PutValue2\"\n        },\n        {\n            \"name\": \"name3\",\n            \"value\": \"PutValue3\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (PutValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"PutValue1 == \" + json.value] = json.value === \"PutValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries (EntitiesValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"EntitiesValue1\"] = json.value === \"EntitiesValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\" : \"name1\",\n  \"value\" : \"EntitiesValue1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (EntitiesValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"EntitiesValue1 == \" + json.value] = json.value === \"EntitiesValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (PostValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"PostValue1 == \" + json.value] = json.value === \"PostValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\" : \"name1\",\n  \"value\" : \"PostValue1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (PostValue1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests[\"PostValue1 == \" + json.value] = json.value === \"PostValue1\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test-and-delete/entries/name1 (\"\")",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"if( responseCode.code === 200 ) {",
+							"    var json = JSON.parse(responseBody);",
+							"    tests['\"\" == ' + json.value] = json.value === \"\";",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete/entries/name1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete",
+						"entries",
+						"name1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KVM test-and-delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"200 OK\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/apigee-api-facade/v1/organizations/{{ORG}}/environments/{{ENV}}/keyvaluemaps/test-and-delete",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"apigee-api-facade",
+						"v1",
+						"organizations",
+						"{{ORG}}",
+						"environments",
+						"{{ENV}}",
+						"keyvaluemaps",
+						"test-and-delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{GCPAccessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

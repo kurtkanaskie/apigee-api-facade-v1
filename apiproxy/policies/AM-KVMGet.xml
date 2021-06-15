@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-KVMGet">
+    <DisplayName>AM-KVMGet</DisplayName>
+    <Remove>
+        <Payload>true</Payload>
+    </Remove>
+    <Set>
+        <Verb>GET</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>target.url</Name>
+        <Template>https://apigee.googleapis.com/v1/organizations/{org_name}/environments/{env_name}/keyvaluemaps</Template>
+    </AssignVariable>
+</AssignMessage>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KV-GetEntry">
+    <DisplayName>KV-GetEntry</DisplayName>
+    <MapName ref="kvm_name"/>
+    <ExpiryTimeInSecs>1</ExpiryTimeInSecs>
+    <Get assignTo="private.entry_value">
+        <Key>
+            <Parameter ref="entry_name"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

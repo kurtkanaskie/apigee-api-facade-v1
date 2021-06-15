@@ -74,7 +74,7 @@ The option `apigee.config.options=update` does not work, need to use `apigee.con
 
 Ad hoc tests can be done using the proviced Postman Collection.
 
-Newman can be used to run the collection for an end-to-end test, see the [README](test/newman-postman/README.md)
+Newman can be used to run the collection for an end-to-end test, see the [README](test/newman-postman/README.md).
 
 ## Disclaimer
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-EntryResponse">
+    <DisplayName>AM-EntryResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json">
+{
+    "name": "{entry_name}",
+    "value": "{escapeJSON(private.entry_value)}"
+}
+</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

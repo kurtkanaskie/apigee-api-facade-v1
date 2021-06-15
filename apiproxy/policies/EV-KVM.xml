@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables continueOnError="false" enabled="true" name="EV-KVM">
+    <DisplayName>EV-KVM</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <URIPath>
+        <Pattern ignoreCase="false">/v1/organizations/{org_name}/environments/{env_name}/keyvaluemaps</Pattern>
+        <Pattern ignoreCase="false">/v1/organizations/{org_name}/environments/{env_name}/keyvaluemaps/{kvm_name}</Pattern>
+    </URIPath>
+    <JSONPayload>
+        <Variable name="kvm_name">
+            <JSONPath>$.name</JSONPath>
+        </Variable>
+        <Variable name="kvm_entries">
+            <JSONPath>$.entry</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>AM-SaveRequest</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="keyvaluemaps">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVM</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMEntries</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="keyvaluemaps">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVM</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMEntries</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="entries">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVMEntry</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>KV-PutEntry</Name>
+                </Step>
+                <Step>
+                    <Name>KV-GetEntry</Name>
+                </Step>
+                <Step>
+                    <Name>AM-EntryResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVMEntry</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>KV-GetEntry</Name>
+                </Step>
+                <Step>
+                    <Name>AM-EntryResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVMEntry</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>KV-PutEntry</Name>
+                </Step>
+                <Step>
+                    <Name>KV-GetEntry</Name>
+                </Step>
+                <Step>
+                    <Name>AM-EntryResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-KVMEntry</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>KV-DeleteEntry</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/apigee-api-facade</BasePath>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

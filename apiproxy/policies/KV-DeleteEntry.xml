@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KV-DeleteEntry">
+    <DisplayName>KV-DeleteEntry</DisplayName>
+    <MapName ref="kvm_name"/>
+    <ExpiryTimeInSecs>1</ExpiryTimeInSecs>
+    <Delete>
+        <Key>
+            <Parameter ref="entry_name"/>
+        </Key>
+        <Value ref="entry_value"/>
+    </Delete>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

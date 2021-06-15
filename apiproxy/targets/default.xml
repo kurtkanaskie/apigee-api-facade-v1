@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Condition>((proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps") and (request_verb = "POST")) or 
+                           ((proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*") and (request_verb = "PUT")) or
+                            (proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries") or
+                            (proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*")
+                </Condition>
+                <Name>AM-RestoreRequest</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <Flows>
+        <Flow name="keyvaluemaps">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMCreate</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="keyvaluemaps">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMGet</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMExists</Name>
+                </Step>
+                <Step>
+                    <Condition>kvm_found = false</Condition>
+                    <Name>RF-KVMNotFound</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="entries">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMGet</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMExists</Name>
+                </Step>
+                <Step>
+                    <Condition>kvm_found = false</Condition>
+                    <Name>RF-KVMNotFound</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMGet</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMExists</Name>
+                </Step>
+                <Step>
+                    <Condition>kvm_found = false</Condition>
+                    <Name>RF-KVMNotFound</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMGet</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMExists</Name>
+                </Step>
+                <Step>
+                    <Condition>kvm_found = false</Condition>
+                    <Name>RF-KVMNotFound</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="entries/*">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>AM-KVMGet</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-KVMExists</Name>
+                </Step>
+                <Step>
+                    <Condition>kvm_found = false</Condition>
+                    <Name>RF-KVMNotFound</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/v1/organizations/*/environments/*/keyvaluemaps/*/entries/*") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPTargetConnection>
+        <URL>https://apigee.googleapis.com</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

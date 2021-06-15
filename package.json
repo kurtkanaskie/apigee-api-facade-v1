@@ -1,0 +1,42 @@
+{
+  "name": "pingstatus",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:kurtkanaskie/pingstatus-v1.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table -e PO003,CC003,CC004,TD002"
+  },
+  "devDependencies": {
+    "apickli": "^1.7.0",
+    "apigeelint": "2.5.0",
+    "bluebird": "^3.3.5",
+    "chai": "^3",
+    "chai-fuzzy": "^1",
+    "cucumber": "^1.0.0",
+    "mocha": "^8.1.1",
+    "prettyjson": "^1.1.3",
+    "sinon": "^1",
+    "newman": "5.2.3"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "predef": [
+      "console",
+      "context"
+    ],
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "undef": true,
+    "latedef": true,
+    "noempty": true,
+    "nonew": true,
+    "unused": true
+  },
+  "dependencies": {
+    "tmp": "^0.1.0"
+  }
+}

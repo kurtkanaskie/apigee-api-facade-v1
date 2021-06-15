@@ -1,0 +1,32 @@
+<APIProxy revision="85" name="apigee-api">
+    <DisplayName></DisplayName>
+    <Description>Proxy to intercept Edge API calls to perform KVM entry update using build in KVM policies.</Description>
+    <CreatedAt>1623358817195</CreatedAt>
+    <LastModifiedAt>1623358817195</LastModifiedAt>
+    <BasePaths>/apigee-api-facade</BasePaths>
+    <Policies>
+        <Policy>EV-KVM</Policy>
+        <Policy>AM-KVMCreate</Policy>
+        <Policy>JS-KVMEntries</Policy>
+        <Policy>AM-KVMGet</Policy>
+        <Policy>AM-RestoreRequest</Policy>
+        <Policy>AM-SaveRequest</Policy>
+        <Policy>EV-KVMEntry</Policy>
+        <Policy>KV-GetEntry</Policy>
+        <Policy>KV-PutEntry</Policy>
+        <Policy>AM-EntryResponse</Policy>
+        <Policy>KV-DeleteEntry</Policy>
+        <Policy>RF-KVMNotFound</Policy>
+        <Policy>JS-KVMExists</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://JS-KVMEntries.js</Resource>
+        <Resource>jsc://JS-KVMExists.js</Resource>
+    </Resources>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

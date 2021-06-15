@@ -1,0 +1,20 @@
+[
+    {
+        "name": "test-and-delete",
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "name1",
+                "value": "DevMaven1"
+            },
+            {
+                "name": "name2",
+                "value": "DevMaven2"
+            },
+            {
+                "name": "name3",
+                "value": "DevMaven3"
+            }
+        ]
+    }
+]

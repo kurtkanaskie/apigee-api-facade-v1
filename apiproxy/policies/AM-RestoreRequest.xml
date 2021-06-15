@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-RestoreRequest">
+    <DisplayName>AM-RestoreRequest</DisplayName>
+    <AssignVariable>
+        <Name>kvm_get_response</Name>
+        <Ref>response.content</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>request.verb</Name>
+        <Ref>request_verb</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>response.content</Name>
+        <Ref>request_content</Ref>
+    </AssignVariable>
+</AssignMessage>
