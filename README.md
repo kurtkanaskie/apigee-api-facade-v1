@@ -1,6 +1,6 @@
 # Apigee API Facade for Apigee X - KVMs
 
-This API proxy provides a solution to KVM entry creation for CI/CD and allows existing KVM representations to be used in the same as they were in the Edge API (Previous Gen Apigee). It is a facade API that intercepts Apigee API requests and executes KVM policies to update KVM entries. The proxy is deployed to the environment in which the KVM entries are to be created.
+This API proxy provides a solution to KVM entry creation for CI/CD and allows existing KVM representations to be used the same as they were in the Edge API (Previous Gen Apigee). It is a facade API that intercepts Apigee API requests and executes KVM policies on the fly, to update KVM entries. The proxy is deployed to the environment in which the KVM entries are to be created.
 
 The URL where `apigee-facade-api` proxy was deployed is used within Maven as the `apigee.hosturl` in the environment profile [pom](test/maven-kvms/pom.xl).
 ```
@@ -8,7 +8,9 @@ The URL where `apigee-facade-api` proxy was deployed is used within Maven as the
 ```
 
 ## Solution Overview
-The proxy implements KVM entry creation by executing KVM policies using the values of entries from a complete KVM request as per Edge API.
+The proxy implements KVM entry creation by executing KVM policies using the values of entries from a complete KVM request as per Edge API. The POST request to create the KVM includes all the entries. After a successful request to the Apigee API to create the KVM, a JavaScript policy iterates through the entries and recursively calls this proxy with entry creation requests. Each of these entry requests uses a GET keyvaluemap request to the Apigee API to ensure the KVM exists and is accessable. 
+
+Security is a pass through of credentials provided to the originating API request.
 
 For example:
 ```

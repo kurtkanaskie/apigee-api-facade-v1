@@ -10,7 +10,7 @@ var proxy_basepath = context.getVariable("proxy.basepath");
 
 var messageid = context.getVariable("messageid");
 // TODO: determine if I need to qualify entries_length and entries_count by messageid
-print( "messageid " + messageid + " entries_length " + kvm_entries.length);
+// print( "messageid " + messageid + " entries_length " + kvm_entries.length);
 context.setVariable("entries_length",kvm_entries.length);
 context.setVariable("entries_count",0);
 

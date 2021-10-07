@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript continueOnError="false" enabled="true" timeLimit="500" name="JS-KVMEntries">
+<Javascript continueOnError="false" enabled="true" timeLimit="1000" name="JS-KVMEntries">
     <DisplayName>JS-KVMEntries</DisplayName>
     <Properties/>
     <ResourceURL>jsc://JS-KVMEntries.js</ResourceURL>

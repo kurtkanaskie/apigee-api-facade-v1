@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-KVMExists">
+<Javascript continueOnError="false" enabled="true" timeLimit="1000" name="JS-KVMExists">
     <DisplayName>JS-KVMExists</DisplayName>
     <Properties/>
     <ResourceURL>jsc://JS-KVMExists.js</ResourceURL>

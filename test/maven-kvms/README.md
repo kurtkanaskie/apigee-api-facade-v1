@@ -16,7 +16,7 @@ curl -H "$AUTH" 'https://napi-dev.kurtkanaskie.net/apigee-api-facade/v1/organiza
 ```
 
 ## Update Requires Sync
-Since the maven config plugin only creates the KVM, it skips if the KVM already exists, therefore need to use sync
+Since the maven config plugin only creates the KVM, it skips if the KVM already exists, therefore need to use sync, to delete then create.
 ```
 mvn -P ngsaas-dev-1 apigee-config:keyvaluemaps -Dapigee.config.options=sync -Dskip.clean=true -Dapigee.config.dir=resources/edge
 ```
