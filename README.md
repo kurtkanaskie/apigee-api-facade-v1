@@ -1,4 +1,9 @@
 # Apigee API Facade for Apigee X - KVMs
+## DEPRECATED
+Apigee X API and Maven Config supports KVM entries create:\
+[Org KVM entries](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.keyvaluemaps.entries)\
+[Env KVM entries](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.environments.keyvaluemaps.entries)\
+[apigee-config-maven-plugin](https://github.com/apigee/apigee-config-maven-plugin)
 
 This API proxy provides a solution to KVM entry creation for CI/CD and allows existing KVM representations to be used the same as they were in the Edge API (Previous Gen Apigee). It is a facade API that intercepts Apigee API requests and executes KVM policies on the fly, to update KVM entries. The proxy is deployed to the environment in which the KVM entries are to be created.
 
